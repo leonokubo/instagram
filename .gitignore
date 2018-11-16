@@ -1,0 +1,10 @@
+.idea/*
+robots.txt
+.bash_history
+.project
+.buildpath
+GOOGLE_CREDENTIALS.json
+vendor
+sdk
+app/tmp
+app/settings.php

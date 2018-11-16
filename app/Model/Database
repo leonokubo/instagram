@@ -1,0 +1,43 @@
+create database cloudVision;
+use cloudVision;
+
+create table user(
+	id int unsigned auto_increment primary key,
+    user varchar(150)
+);
+
+-- drop table instagram;
+create table instagram(
+	user int unique,
+    lastId bigint unsigned,
+    maxId text,
+    create_date timestamp default current_timestamp,
+    modify_date timestamp default current_timestamp,
+    key(user)
+);
+
+-- drop table mediaInstagram;
+create table mediaInstagram(
+	id bigint unsigned primary key,
+    user int unique,
+    imageHighResolutionUrl text,
+    createdTime timestamp
+);
+
+
+
+insert into user(user) values('fscompanyoficial');
+insert into user(user) values('fscompanyoficial');
+
+select * from user;
+select * from instagram;
+select * from mediaInstagram;
+
+-- insert into instagram(user, lastId,maxId) values(1,null,null) on duplicate key update modify_date = current_timestamp;
+
+
+UPDATE cloudVision.instagram SET lastId = 1901737203874519624, maxId = 'QVFBYm5GWWFiTnJKVmFpWi0zcE15QUJsQlFscXJnX0ZheXdkcHgzMDcyU3pQb3JIVWNTUlJSZ3lTWVNOTWdsMFl5WkFYWWJwdGtadE5KZ1NEY3NIZnB0aw=='
+WHERE user = 1;
+
+-- update instagram set lastId = null, maxId = null where user = 1;
+

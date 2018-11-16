@@ -1,0 +1,91 @@
+<configuration xmlns="http://logging.apache.org/log4php/">
+
+    <appender name="api" class="LoggerAppenderDailyFile">
+        <param name="file" value="/fs/logs/billing/api-%s.log"/>
+        <param name="datePattern" value="Ymd"/>
+        <layout class="LoggerLayoutPattern">
+            <param name="conversionPattern" value="%date{Y-m-d H:i:s} %c[%level] process[%process] %ex %location - %message%n"/>
+        </layout>
+    </appender>
+
+    <logger name="api">
+        <appender_ref ref="api"/>
+    </logger>
+
+    <appender name="error" class="LoggerAppenderDailyFile">
+        <param name="file" value="/fs/logs/billing/error-%s.log"/>
+        <param name="datePattern" value="Ymd"/>
+        <layout class="LoggerLayoutPattern">
+            <param name="conversionPattern" value="%date{Y-m-d H:i:s} %c[%level] process[%process] %ex %location - %message%n"/>
+        </layout>
+    </appender>
+
+    <logger name="error">
+        <appender_ref ref="error"/>
+    </logger>
+
+    <appender name="mysql" class="LoggerAppenderDailyFile">
+        <param name="file" value="/fs/logs/billing/mysql-%s.log"/>
+        <param name="datePattern" value="Ymd"/>
+        <layout class="LoggerLayoutPattern">
+            <param name="conversionPattern" value="%date{Y-m-d H:i:s} process[%process] - %message%n"/>
+        </layout>
+    </appender>
+
+    <logger name="mysql">
+        <appender_ref ref="mysql"/>
+    </logger>
+
+    <appender name="cronjob" class="LoggerAppenderRollingFile">
+        <param name="file" value="/fs/logs/billing/cronjob.log"/>
+        <param name="maxFileSize" value="900MB" />
+        <param name="maxBackupIndex" value="2" />
+        <layout class="LoggerLayoutPattern">
+            <param name="conversionPattern" value="%date{Y-m-d H:i:s} %c[%level] process[%process] %ex %location - %message%n"/>
+        </layout>
+    </appender>
+
+    <logger name="cronjob">
+        <appender_ref ref="cronjob"/>
+    </logger>
+
+    <appender name="stackdriver" class="LoggerAppenderRollingFile">
+        <param name="file" value="/fs/logs/billing/stackdriver.log"/>
+        <param name="maxFileSize" value="900MB" />
+        <param name="maxBackupIndex" value="3" />
+        <layout class="LoggerLayoutPattern">
+            <param name="conversionPattern" value="%message%n"/>
+        </layout>
+    </appender>
+
+    <logger name="stackdriver">
+        <appender_ref ref="stackdriver"/>
+    </logger>
+
+    <appender name="request" class="LoggerAppenderRollingFile">
+        <param name="file" value="/fs/logs/billing/request.log"/>
+        <param name="maxFileSize" value="900MB" />
+        <param name="maxBackupIndex" value="3" />
+        <layout class="LoggerLayoutPattern">
+            <param name="conversionPattern" value="%message%n"/>
+        </layout>
+    </appender>
+
+    <logger name="request">
+        <appender_ref ref="request"/>
+    </logger>
+
+    <appender name="datasync_job" class="LoggerAppenderRollingFile">
+        <param name="file" value="/fs/logs/billing/datasync_job.log"/>
+        <param name="maxFileSize" value="900MB" />
+        <param name="maxBackupIndex" value="2" />
+        <layout class="LoggerLayoutPattern">
+            <param name="conversionPattern" value="%date{Y-m-d H:i:s} %c[%level] process[%process] %ex %location - %message%n"/>
+        </layout>
+    </appender>
+
+    <logger name="datasync_job">
+        <appender_ref ref="datasync_job"/>
+    </logger>
+
+</configuration>

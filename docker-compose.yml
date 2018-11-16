@@ -1,0 +1,46 @@
+version: "3.5"
+services:
+    redis:
+      image: redis:alpine
+      container_name: cloudvision-redis
+      networks:
+          - fs_networks
+
+    webserver:
+      image: nginx:1.15
+      container_name: cloudvision_nginx
+      working_dir: /var/wwww/html
+      environment:
+          - C_FORCE_ROOT=true;
+          - APPLICATION_ENV=docker
+          - SONAR_AUTH_TOKEN=user:senha
+          - GOOGLE_APPLICATION_CREDENTIALS=/var/wwww/html/GOOGLE_CREDENTIALS.json
+      volumes:
+          - ./:/var/wwww/html
+          - ./phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      ports:
+          - "8585:80"
+      extra_hosts:
+          - "billing.localhost:172.18.0.3" #ip dinamico p
+      networks:
+          - fs_networks
+
+    php-fpm:
+      build: phpdocker/php-fpm
+      container_name: cloudvision
+      working_dir: /var/wwww/html
+      environment:
+        - C_FORCE_ROOT=true;
+        - APPLICATION_ENV=docker
+        - SONAR_AUTH_TOKEN=user:senha
+        - GOOGLE_APPLICATION_CREDENTIALS=/var/wwww/html/GOOGLE_CREDENTIALS.json
+      extra_hosts:
+        - "billing.localhost:172.18.0.3" #ip dinamico p
+      volumes:
+        - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.2/fpm/pool.d/php-ini-overrides.ini
+        - ./:/var/wwww/html
+      networks:
+            - fs_networks
+networks:
+  fs_networks:
+   name: fs_networks
