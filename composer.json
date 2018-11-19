@@ -1,6 +1,5 @@
 {
     "require": {
-        "jordikroon/google-vision": "^1.8",
         "raiym/instagram-php-scraper": "^0.8.24",
         "slim/php-view": "^2.2",
         "apache/log4php": "^2.3",

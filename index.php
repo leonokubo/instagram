@@ -1,4 +1,5 @@
 <?php
+die('aaa');
 
 require_once realpath(dirname(__DIR__) . '/html/vendor/autoload.php');
 
@@ -20,5 +21,6 @@ require realpath(dirname(__DIR__) . '/html/app/middleware.php');
 
 // Register routes
 require realpath(dirname(__DIR__) . '/html/app/routes.php');
+
 // Run app
 $app->run();

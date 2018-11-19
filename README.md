@@ -5,3 +5,5 @@ Router in app/
 Get starded
 docker-compose build
 docker-compose up -d
+in docker, composer install
+if you want, install gcloud, see https://cloud.google.com/sdk/docs/quickstart-linux

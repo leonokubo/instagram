@@ -14,7 +14,7 @@ $settings = [
         ],
         'redis' => [
             "scheme" => "tcp",
-            "host" => "cloudvision-redis",
+            "host" => "instagram-redis",
             "port" => "6379",
             'database' => 13,
             'alias' => 'billing',
